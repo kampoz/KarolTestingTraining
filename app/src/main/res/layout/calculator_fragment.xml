@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/firstNumberEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="First number"
+        android:inputType="textPersonName"
+        android:text="0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/secondNumberEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="Second number"
+        android:inputType="textPersonName"
+        android:text="0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/firstNumberEditText" />
+
+    <TextView
+        android:id="@+id/sumTextView"
+        android:layout_width="157dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="30dp"
+        android:text="0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/secondNumberEditText" />
+
+    <Button
+        android:id="@+id/sumButton"
+        android:layout_width="249dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="30dp"
+        android:text="Sumuj"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sumTextView" />
+
+    <View
+        android:id="@+id/horizontalStrip"
+        android:layout_height="5dp"
+        android:layout_width="match_parent"
+        android:background="#cacaca"
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sumButton" />
+
+    <Button
+        android:id="@+id/randomizeFruitsButton"
+        android:layout_width="249dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="30dp"
+        android:text="Mieszaj owoce"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horizontalStrip" />
+
+    <TextView
+        android:id="@+id/resultListTextView"
+        android:layout_width="157dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="30dp"
+        android:text="0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/randomizeFruitsButton" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

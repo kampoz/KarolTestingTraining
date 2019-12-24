@@ -1,0 +1,3 @@
+package com.example.karoltestingtraining.infrastructure.rest
+
+class AccountRestClient
