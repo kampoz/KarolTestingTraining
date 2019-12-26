@@ -56,10 +56,14 @@ class CalculatorFragment() : Fragment() {
     }
 
     private fun setActualFruitListObserver(view: View) {
-        calculatorViewModel.actualFruitList.observe(
-            fragmentInstance,
-            Observer<List<String>> { resultList -> view.resultListTextView.text = resultList.joinToString() }
-        )
+        view.apply{
+            calculatorViewModel.actualFruitList.observe(
+                fragmentInstance,
+                Observer<List<String>> {
+                        resultList -> resultListTextView.text = resultList.joinToString()
+                }
+            )
+        }
     }
 
     private fun setSumButtonOnClickListener(view: View) {
