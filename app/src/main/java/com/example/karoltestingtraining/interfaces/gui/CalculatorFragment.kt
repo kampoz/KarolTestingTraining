@@ -19,8 +19,9 @@ import kotlinx.android.synthetic.main.calculator_fragment.view.sumTextView
 class CalculatorFragment() : Fragment() {
 
     private val fragmentInstance: Fragment = this
-    private var calculatorViewModel: CalculatorViewModel? = null
+    private lateinit var calculatorViewModel: CalculatorViewModel
 
+    /* HELPER FOR UNIT TESTS --- BEGIN */
 
     // Builder specific constructor
     private constructor(calculatorViewModel: CalculatorViewModel) : this() {
@@ -36,12 +37,14 @@ class CalculatorFragment() : Fragment() {
         }
     }
 
+    /* HELPER FOR UNIT TESTS --- END */
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        calculatorViewModel = calculatorViewModel ?: ViewModelProviders.of(this).get(CalculatorViewModel::class.java)
+        calculatorViewModel = if (::calculatorViewModel.isInitialized) calculatorViewModel else ViewModelProviders.of(this).get(CalculatorViewModel::class.java)
 
         return calculator_fragment
             .let { inflater.inflate(it, container, false) }
@@ -53,7 +56,7 @@ class CalculatorFragment() : Fragment() {
     }
 
     private fun setActualFruitListObserver(view: View) {
-        calculatorViewModel!!.actualFruitList.observe(
+        calculatorViewModel.actualFruitList.observe(
             fragmentInstance,
             Observer<List<String>> { resultList -> view.resultListTextView.text = resultList.joinToString() }
         )
@@ -65,7 +68,7 @@ class CalculatorFragment() : Fragment() {
                 var firstNumber: Int = firstNumberEditText.run { /*validate(text)*/ text }.toString().toInt()
                 var secondNumber: Int = secondNumberEditText.run { /*validate(text)*/ text }.toString().toInt()
 
-                sumTextView.text = calculatorViewModel!!.simplePassthroughMethod(firstNumber, secondNumber).toString()
+                sumTextView.text = calculatorViewModel.simplePassthroughMethod(firstNumber, secondNumber).toString()
             }
         }
     }
@@ -73,7 +76,7 @@ class CalculatorFragment() : Fragment() {
     private fun setRandomizeFruitButtonOnClickListener(view: View) {
         view.apply {
             randomizeFruitsButton.setOnClickListener {
-                calculatorViewModel!!.randomizeFruitsList()
+                calculatorViewModel.randomizeFruitsList()
             }
         }
     }
