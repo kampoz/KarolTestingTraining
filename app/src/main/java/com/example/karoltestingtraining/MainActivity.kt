@@ -13,8 +13,7 @@ class MainActivity : AppCompatActivity() {
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
 
-        val fragment =
-            CalculatorFragment()
+        val fragment = CalculatorFragment()
 
         fragmentTransaction.add(R.id.fragment_container, fragment)
         fragmentTransaction.commit()
