@@ -16,35 +16,21 @@ import kotlinx.android.synthetic.main.calculator_fragment.view.secondNumberEditT
 import kotlinx.android.synthetic.main.calculator_fragment.view.sumButton
 import kotlinx.android.synthetic.main.calculator_fragment.view.sumTextView
 
-class CalculatorFragment() : Fragment() {
+class CalculatorFragment : Fragment() {
 
     private val fragmentInstance: Fragment = this
     private lateinit var calculatorViewModel: CalculatorViewModel
-
-    /* HELPER FOR UNIT TESTS --- BEGIN */
-
-    // Builder specific constructor
-    private constructor(calculatorViewModel: CalculatorViewModel) : this() {
-        this.calculatorViewModel = calculatorViewModel
-    }
-
-    data class Builder(
-        var calculatorViewModel: CalculatorViewModel? = null
-    ) {
-        fun calculatorViewModel(calculatorViewModel: CalculatorViewModel) = apply { this.calculatorViewModel = calculatorViewModel }
-        fun build() = CalculatorFragment().also {
-            it.calculatorViewModel = this.calculatorViewModel ?: it.calculatorViewModel
-        }
-    }
-
-    /* HELPER FOR UNIT TESTS --- END */
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        calculatorViewModel = if (::calculatorViewModel.isInitialized) calculatorViewModel else ViewModelProviders.of(this).get(CalculatorViewModel::class.java)
+//        setCalculatorViewModel(ViewModelProviders.of(this).get(CalculatorViewModel::class.java))
+//        this.getArguments()
+        var cvm: CalculatorViewModel? = this.arguments?.getParcelable<CalculatorViewModel>("calculatorViewModel")
+
+        setCalculatorViewModel(cvm!!)
 
         return calculator_fragment
             .let { inflater.inflate(it, container, false) }
@@ -53,6 +39,10 @@ class CalculatorFragment() : Fragment() {
             // onClickListeners
             .also { setSumButtonOnClickListener(it) }
             .also { setRandomizeFruitButtonOnClickListener(it) }
+    }
+
+    private fun setCalculatorViewModel(calculatorViewModel: CalculatorViewModel) {
+        this.calculatorViewModel = calculatorViewModel
     }
 
     private fun setActualFruitListObserver(view: View) {
@@ -84,5 +74,4 @@ class CalculatorFragment() : Fragment() {
             }
         }
     }
-
 }
